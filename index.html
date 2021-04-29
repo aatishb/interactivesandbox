@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Interactive Sandbox</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Unica+One|Vollkorn&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+  <script src="./libraries/katex.min.js"></script>
+  <script src="./libraries/p5.min.js"></script>
+  <script src="./libraries/marked.min.js"></script>
+  <script src="./libraries/vue.js"></script>
+  <script src="./libraries/vue-observe-visibility.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta name="description" content="Interactive Sandbox" />
+
+</head>
+<body>
+
+<div id="root" class="container">
+
+<md>
+# Interactive Sandbox
+### A Template for Creating Explorable Documents With p5.js
+
+This is some text written in markdown. It can include [links](https://aatishb.com/stringmath/), or equations like $E = m c^2$.
+
+## A p5 Animation
+
+Here's how to embed a p5 interactive with sliders.
+</md>
+
+<!-- variables and sliders are defined in vue-definitions.js -->
+
+<animation 
+:variables="sketch1.variables" 
+:sliders="sketch1.sliders" 
+:code="`
+function setup() {
+  p.fill(255);
+}
+
+function draw() {
+  p.background(0);
+  p.circle(p.width * data.x, p.height * data.y, 2 * data.r);
+}
+`">
+</animation>
+
+<md>
+Here's another p5 interactive. Try moving your mouse over it.
+</md>
+
+<!-- variables and sliders are defined in vue-definitions.js -->
+
+<animation 
+:variables="sketch2.variables" 
+:sliders="sketch2.sliders" 
+:code="`
+function setup() {
+  p.noStroke();
+}
+
+function draw() {
+  p.background(data.r, data.g, data.b);
+  p.fill(255 - data.r, 255 - data.g, 255 - data.b);
+  p.circle(p.mouseX, p.mouseY, 100);
+}
+`">
+</animation>
+
+<md>
+Try changing the code or adding more interactives! (Remember to write the p5 code in [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode).)
+</md>
+
+</div>
+
+<!-- page code -->
+<script src="vue-definitions.js"></script>
+
+</body>
+</html>

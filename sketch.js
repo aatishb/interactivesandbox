@@ -15,6 +15,5 @@ function sketch(parent) { // we pass the sketch data from the parent
       }
     }
 
-
   };
 }

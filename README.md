@@ -1,2 +1,2 @@
 # interactivesandbox
-A remplate for making interactive essays with p5.js
+A template for making interactive essays with p5.js

@@ -15,38 +15,5 @@ function sketch(parent) { // we pass the sketch data from the parent
       }
     }
 
-    p.setup = function() {
-      if (typeof setup === 'function') {
-        setup();
-      }
-    };
-
-
-    p.draw = function() {
-      if (parent.isVisible && typeof draw === 'function') {
-        draw();
-      }
-    };
-    
-
-    p.mouseClicked = function() {
-      if (p.mouseY > 0 && p.mouseY < p.height && p.mouseX > 0 && p.mouseX < p.width  && typeof mouseClicked === 'function') {
-        //console.log(parent.data);
-        mouseClicked();
-      }
-    };
-
-    /*
-
-    p.dataChanged = function(val, oldVal) {
-      // console.log('data changed');
-      // console.log('x: ', val.x, 'y: ', val.y);
-    };
-
-    // this is a new function we've added to p5
-    // it runs only if the data changes
-
-    */
-
   };
 }

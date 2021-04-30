@@ -16,7 +16,7 @@ Vue.component('animation', {
 
     </div>
 
-  <p5 v-if="code" src="./sketch.js" :data="{variables: variables, code: code}"></p5>
+  <p5 v-if="code" src="./sketch.js" :data="{variables: variables, code: code}" v-bind.sync="variables"></p5>
 
   </div>
   `,

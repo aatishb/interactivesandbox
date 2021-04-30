@@ -4,6 +4,8 @@
 function sketch(parent) { // we pass the sketch data from the parent
   return function( p ) { // p could be any variable name
 
+    let data = parent.data.variables;
+
     if (parent.data.code) {
       try {
         eval(parent.data.code);
@@ -12,8 +14,6 @@ function sketch(parent) { // we pass the sketch data from the parent
         console.log(error);
       }
     }
-
-    let data = parent.data.variables;
 
     p.setup = function() {
       if (typeof setup === 'function') {

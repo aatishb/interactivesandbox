@@ -161,7 +161,7 @@ Vue.component('p5', {
     },
 
     visibilityChanged(isVisible, entry) {
-      this.isVisible = isVisible
+      this.isVisible = isVisible;
     }
   },
 

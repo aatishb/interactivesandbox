@@ -45,9 +45,9 @@ p.draw = function() {
     p.background(0);
     p.fill(255);
     // you can access vue variables from p5
-    p.circle(p.width * data.x, p.height * data.y, 2 * data.r);
+    p.circle(p.width * variables.x, p.height * variables.y, 2 * variables.r);
     p.fill(0);
-    p.text('drag me!', p.width * data.x, p.height * data.y);
+    p.text('drag me!', p.width * variables.x, p.height * variables.y);
   }
 };
 
@@ -80,8 +80,8 @@ p.setup = function() {
 
 p.draw = function() {
   if (parent.isVisible) { // only update draw loop when canvas is visible
-    p.background(data.r, data.g, data.b);
-    p.fill(255 - data.r, 255 - data.g, 255 - data.b);
+    p.background(variables.r, variables.g, variables.b);
+    p.fill(255 - variables.r, 255 - variables.g, 255 - variables.b);
     p.circle(p.mouseX, p.mouseY, 100);
   }
 };

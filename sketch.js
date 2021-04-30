@@ -4,7 +4,7 @@
 function sketch(parent) { // we pass the sketch data from the parent
   return function( p ) { // p could be any variable name
 
-    let data = parent.data.variables;
+    let variables = parent.data.variables;
 
     if (parent.data.code) {
       try {

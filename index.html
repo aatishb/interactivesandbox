@@ -36,6 +36,7 @@ Here's how to embed a p5 interactive with sliders.
 :sliders="sketch1.sliders" 
 :code="`
 function setup() {
+  p.createCanvas(600, 400);
   p.fill(255);
 }
 
@@ -57,6 +58,7 @@ Here's another p5 interactive. Try moving your mouse over it.
 :sliders="sketch2.sliders" 
 :code="`
 function setup() {
+  p.createCanvas(600, 400);
   p.noStroke();
 }
 

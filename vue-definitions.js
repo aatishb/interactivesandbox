@@ -157,7 +157,7 @@ Vue.component('p5', {
     },
 
     loadSketch() {
-      this.myp5 = new p5(sketch(this));
+      this.myp5 = new p5(sketch(this), this.$el);
     },
 
     visibilityChanged(isVisible, entry) {

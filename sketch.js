@@ -12,34 +12,35 @@ function sketch(parent) { // we pass the sketch data from the parent
         console.log(error);
       }
     }
+
     let data = parent.data.variables;
 
     p.setup = function() {
-      let canvas = p.createCanvas(400, 400);
-      canvas.parent(parent.$el);
-
-      setup();
+      if (typeof setup === 'function') {
+        setup();
+      }
     };
 
 
     p.draw = function() {
-      if (parent.isVisible) {
+      if (parent.isVisible && typeof draw === 'function') {
         draw();
       }
     };
     
-    p.dataChanged = function(val, oldVal) {
-      // console.log('data changed');
-      // console.log('x: ', val.x, 'y: ', val.y);
-      data = val.variables;
+
+    p.mouseClicked = function() {
+      if (p.mouseY > 0 && p.mouseY < p.height && p.mouseX > 0 && p.mouseX < p.width  && typeof mouseClicked === 'function') {
+        //console.log(parent.data);
+        mouseClicked();
+      }
     };
 
     /*
 
-    p.mouseClicked = function() {
-      if (p.mouseY > 0 && p.mouseY < p.height) {
-        //console.log(parent.data);
-      }
+    p.dataChanged = function(val, oldVal) {
+      // console.log('data changed');
+      // console.log('x: ', val.x, 'y: ', val.y);
     };
 
     // this is a new function we've added to p5

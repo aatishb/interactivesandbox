@@ -26,11 +26,10 @@ This is some text written in markdown. It can include [links](https://aatishb.co
 
 ## A p5 Animation
 
-You can embed a p5 interactive with sliders.
+You can embed a p5 interactive with sliders. 
 </md>
 
-<!-- variables and sliders are defined in vue-definitions.js -->
-
+<!-- variables and sliders are defined at the bottom of the page -->
 <animation 
 :variables="sketch1.variables" 
 :sliders="sketch1.sliders" 
@@ -67,8 +66,7 @@ p.mouseDragged = function() {
 Here's another p5 interactive. Try moving your mouse over it.
 </md>
 
-<!-- variables and sliders are defined in vue-definitions.js -->
-
+<!-- variables and sliders are defined at the bottom of the page -->
 <animation 
 :variables="sketch2.variables" 
 :sliders="sketch2.sliders" 
@@ -94,7 +92,31 @@ Try changing the code or adding more interactives! (Remember to write the p5 cod
 
 </div>
 
-<!-- page code -->
+<!-- here we define data accessible throughout the page -->
+<script>
+pageData = {
+
+  sketch1: {
+    variables: {x: 0.5, y: 0.5, r: 50},
+    sliders: {
+      x: ['x position', 0, 1, 0.01], 
+      y: ['y position', 0, 1, 0.01],
+      r: ['radius', 0, 200, 1],
+    } 
+  },
+
+  sketch2: {
+    variables: {r: 60, g: 20, b: 90},
+    sliders: {
+      r: ['Red', 0, 255, 1],         
+      g: ['Green', 0, 255, 1],         
+      b: ['Blue', 0, 255, 1],         
+    }
+  },
+  
+};
+</script>
+<!-- vue-definitions.js runs vue.js and defines the components -->
 <script src="vue-definitions.js"></script>
 
 </body>

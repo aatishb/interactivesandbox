@@ -126,25 +126,27 @@ p.drawSegment = function(base, vec, myColor) {
 Here's another p5 interactive. Try moving your mouse over it.
 </md>
 
-<!-- variables and sliders are defined at the bottom of the page -->
-<animation
-:variables="sketch2.variables"
-:sliders="sketch2.sliders"
-:code="`
-p.setup = function() {
-  p.createCanvas(600, 400);
-  p.noStroke();
-};
+<!-- sketch variables are defined at the bottom of the page -->
 
-p.draw = function() {
-  if (parent.isVisible) { // only update draw loop when canvas is visible
-    p.background(variables.r, variables.g, variables.b);
-    p.fill(255 - variables.r, 255 - variables.g, 255 - variables.b);
-    p.circle(p.mouseX, p.mouseY, 100);
-  }
-};
-`">
-</animation>
+Red: {{sketch2.r}} <input type="range" min="0" max="255" step="1" v-model="sketch2.r"></input> 
+Green: {{sketch2.g}} <input type="range" min="0" max="255" step="1" v-model="sketch2.g"></input> 
+Blue: {{sketch2.b}} <input type="range" min="0" max="255" step="1" v-model="sketch2.b"></input> 
+
+<p5 :vars="sketch2">
+
+  p.setup = function() {
+    p.createCanvas(600, 400);
+  };
+
+  p.draw = function() {
+    if (parent.isVisible) { // only update draw loop when canvas is visible
+      p.background(vars.r, vars.g, vars.b);
+      p.fill(255 - vars.r, 255 - vars.g, 255 - vars.b);
+      p.circle(p.mouseX, p.mouseY, 100);
+    }
+  };
+</p5>
+
 
 <md>
 Try changing the code or adding more interactives! (Remember to write the p5 code in [instance mode](https://github.com/processing/p5.js/wiki/Global-and-instance-mode).)
@@ -154,7 +156,7 @@ Try changing the code or adding more interactives! (Remember to write the p5 cod
 
 <!-- here we define data accessible throughout the page -->
 <script>
-pageData = {
+let data = {
 
   sketch1: {
     variables: {x: 0.5, y: 0.5, r: 50, horizon: 50, state: 1, ratio: 0.75, vp: 300},
@@ -167,12 +169,9 @@ pageData = {
   },
 
   sketch2: {
-    variables: {r: 60, g: 20, b: 90},
-    sliders: {
-      r: ['Red', 0, 255, 1],
-      g: ['Green', 0, 255, 1],
-      b: ['Blue', 0, 255, 1],
-    }
+    r: 60, 
+    g: 20, 
+    b: 90
   },
 
 };

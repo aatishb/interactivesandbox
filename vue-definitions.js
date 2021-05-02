@@ -16,7 +16,7 @@ Vue.component('animation', {
 
     </div>
 
-  <p5 v-if="code" src="./sketch.js" :data="{variables: variables, code: code}" v-bind.sync="variables"></p5>
+  <oldp5 v-if="code" src="./sketch.js" :data="{variables: variables, code: code}" v-bind.sync="variables"></oldp5>
 
   </div>
   `,
@@ -134,6 +134,67 @@ Vue.component('p5', {
 
   template: '<div v-observe-visibility="visibilityChanged"></div>',
 
+  props: ['vars'],
+
+  methods: {
+
+    script() { // this is a javascript closure, use so we can refer to parent level variables from within the p5 code 
+
+      let vars = this.vars;
+      let code = this.$slots.default[0].text;
+      let parent = this;
+
+      return function (p) {
+
+        if (code) {
+          try {
+            eval(code);
+          } catch(error) {
+            console.log(code);
+            console.log(error);
+          }
+        }
+
+      };
+
+    },
+
+    visibilityChanged(isVisible, entry) {
+      this.isVisible = isVisible;
+    }
+  },
+
+  data: function() {
+    return {
+      myp5: {},
+      isVisible: false
+    }
+  },
+
+  mounted() {
+    this.myp5 = new p5(this.script(), this.$el);
+  },
+
+  watch: {
+    data: {
+      handler: function(val, oldVal) {
+        if(this.myp5.dataChanged) {
+          this.myp5.dataChanged(val, oldVal);
+        }
+      },
+      deep: true
+    }
+  }
+})
+
+
+
+// old p5 component
+
+Vue.component('oldp5', {
+
+  template: '<div v-observe-visibility="visibilityChanged"></div>',
+
   props: ['src','data'],
 
   methods: {
@@ -201,6 +262,6 @@ let app = new Vue({
 
   },
 
-  data: pageData
+  data: data
 
 })
